@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>同步</string>
+		<string>tong_bu.png</string>
+	</array>
+	<array>
+		<string>tong_bu.png</string>
+	</array>
+	<array>
+		<string>声音提醒</string>
+		<string>ti_xing@2x.png</string>
+	</array>
+	<array>
+		<string>震动提醒</string>
+		<string>verber.png</string>
+	</array>
+	<array>
+		<string>desktop.png</string>
+	</array>
+	<array>
+		<string>桌面一键应用</string>
+		<string>desktop.png</string>
+	</array>
+	<array>
+		<string>登陆时显示欢迎页面</string>
+		<string>wellcom.png</string>
+	</array>
+	<array>
+		<string>同步</string>
+	</array>
+	<array>
+		<string>退出账号时自动清除缓存</string>
+		<string>clear_memery.png</string>
+	</array>
+	<array>
+		<string>手动清除</string>
+		<string>zi_dong.png</string>
+	</array>
+</array>
+</plist>

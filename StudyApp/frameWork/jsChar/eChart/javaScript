@@ -1,0 +1,43 @@
+
+
+
+
+function exeResult(v1,v2,v3,v4,ft,st) {
+
+var myChart = echarts.init(document.getElementById('main'));
+
+option = {
+color: ['#3398DB'],
+tooltip: {
+trigger: 'axis',
+axisPointer: {
+type: 'shadow'
+}
+},
+grid: {
+left: '3%',
+right: '4%',
+bottom: '3%',
+containLabel: true
+},
+xAxis: [{
+type: 'category',
+data: [ft, st, '星期三', '星期四', '星期五', '星期六', '星期日'],
+axisTick: {
+alignWithLabel: true
+}
+}],
+yAxis: [{
+type: 'value'
+}],
+series: [{
+name: '直接访问',
+type: 'bar',
+barWidth: '60%',
+data: [v1, v2, v3, v4, 10, 10, 20]
+}]
+};
+
+myChart.setOption(option);
+
+}

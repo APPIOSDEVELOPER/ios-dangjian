@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>allapp_singn@2x.png</string>
+		<string>协同</string>
+	</array>
+	<array>
+		<string>allapp_bulletin@2x.png</string>
+		<string>公告</string>
+	</array>
+	<array>
+		<string>allapp_collaboration@2x.png</string>
+		<string>任务</string>
+	</array>
+	<array>
+		<string>allapp_document@2x.png</string>
+		<string>文档</string>
+	</array>
+	<array>
+		<string>allapp_statistics@2x.png</string>
+		<string>统计图</string>
+	</array>
+	<array>
+		<string>allapp_ic_im@2x.png</string>
+		<string>工作微信</string>
+	</array>
+	<array>
+		<string>allapp_schedule@2x.png</string>
+		<string>时间安排</string>
+	</array>
+	<array>
+		<string>allapp_bulletin@2x.png</string>
+		<string>公告</string>
+	</array>
+	<array>
+		<string>allapp_news@2x.png</string>
+		<string>新闻</string>
+	</array>
+	<array>
+		<string>allapp_offline@2x.png</string>
+		<string>离线文件</string>
+	</array>
+	<array>
+		<string>allapp_singn@2x.png</string>
+		<string>签到</string>
+	</array>
+</array>
+</plist>
