@@ -33,7 +33,6 @@ class NewsModel: BaseModel {
             super.setValue(value, forKey: key);
         }
     }
-
 }
 
 class LinksEntityModel: BaseModel {

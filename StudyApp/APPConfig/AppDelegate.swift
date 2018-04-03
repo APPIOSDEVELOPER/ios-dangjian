@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UITabBarControllerDelegat
     
 //    var welCtrl: WelcomViewController!
     
+    // 更新提示
+    
     var searchItem: UIBarButtonItem!
 //    var addItem: UIBarButtonItem!
 //    var messgeItem: UIBarButtonItem!
