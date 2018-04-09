@@ -11,16 +11,14 @@ import UIKit
 class PicViewController:  SuperBaseViewController,UICollectionViewDataSource,PhotoLayoutDelegate,UICollectionViewDelegateFlowLayout{
     
     
-    var dataSourceItems = [String]();
+    var model: ActivityModel!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for idx in 0..<20 {
-            dataSourceItems.append("\(idx)");
-        }
-        
+  
         let layout = PhotoLayout();
         layout.sectionInset = UIEdge(size: 10);
 //        layout.minLineGap = 4;
@@ -30,6 +28,7 @@ class PicViewController:  SuperBaseViewController,UICollectionViewDataSource,Pho
         baseCollectionView.register(BaseCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "imageCell");
         baseCollectionView.register(PhotoLabelHeaderView.classForCoder(), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "header");
         
+        title = model.activityName;
     }
     
     func column(index: Int, height row: Int) -> CGFloat {
@@ -77,7 +76,7 @@ class PicViewController:  SuperBaseViewController,UICollectionViewDataSource,Pho
     // MARK:- collection view delegate
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return dataSourceItems.count;
+        return model?.imgAarray?.count ?? 0;
     }
     
 
@@ -85,22 +84,16 @@ class PicViewController:  SuperBaseViewController,UICollectionViewDataSource,Pho
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! BaseCollectionViewCell;
         cell.contentType = .onlyImage;
         cell.clipsToBounds = true;
-        let idx = indexPath.row % 9 + 1;
-        
-        cell.imageView.image = UIImage(named:"\(idx)");
+        let photo = model.imgAarray[indexPath.row];
+        cell.imageView.sd_setImage(withURLString: photo.url);
         return cell;
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         
-        var ds = [String]();
-        for idx in 1...dataSourceItems.count {
-            ds.append("\(idx)")
-        }
-        
         
         let ctrl = ScalePicViewController();
-        ctrl.dataSource = ds;
+        ctrl.dataSource = model.imgAarray;
         ctrl.currentIndex = indexPath.row;
         navigateCtrl.pushViewController(ctrl, animated: true);
         

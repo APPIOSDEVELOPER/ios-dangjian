@@ -23,8 +23,6 @@ class MyClsViewController: SuperBaseViewController {
             fonts.append(f);
         }
         
-        
-        
         createTable(delegate: self);
         baseTable.rowHeight = UITableViewAutomaticDimension;
         baseTable.estimatedRowHeight = 100;

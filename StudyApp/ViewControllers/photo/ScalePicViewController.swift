@@ -10,7 +10,7 @@ import UIKit
 
 class ScalePicViewController: SuperBaseViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
-    var dataSource: [String]!
+    var dataSource: [PhotoModel]!
     var currentIndex = 0;
     
 
@@ -79,12 +79,8 @@ class ScalePicViewController: SuperBaseViewController,UICollectionViewDelegate,U
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "baseCell", for: indexPath) as! ScalePicCollectionViewCell;
         cell.resetScale();
-        
-        let idx = indexPath.row % 9 + 1;
-
-        let name = "\(idx)";
-        
-        cell.imageView.image = UIImage(named:name);
+        let model = dataSource[indexPath.row];
+        cell.imageView.sd_setImage(withURLString: model.url);
         return cell;
     }
     

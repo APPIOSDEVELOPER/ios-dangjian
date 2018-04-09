@@ -6,6 +6,7 @@
 
 import UIKit
 
+
 class HomeContentViewController: SuperBaseViewController,UICollectionViewDelegate,UICollectionViewDataSource {
     
     
@@ -56,6 +57,8 @@ class HomeContentViewController: SuperBaseViewController,UICollectionViewDelegat
         pageCtrl.numberOfPages = 3;
         baseTable.tableHeaderView = headerVew;
         
+        
+        
     }
     
     override func loadDataFromNet(net: Bool) {
@@ -88,6 +91,17 @@ class HomeContentViewController: SuperBaseViewController,UICollectionViewDelegat
             
         };
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        
+//        let subView = YTShapePathView(frame: .init(x: 10, y: 100, width: 200, height: 200), type: .pureView);
+//        self.view.addSubview(subView);
+        
+        
+        
+    
     }
     
     
@@ -139,6 +153,8 @@ class HomeContentViewController: SuperBaseViewController,UICollectionViewDelegat
         
         let model = newModel.pageInfo.pageList[indexPath.row];
         enterHTMLContent(url: model.getLinkURL(),id: model.id);
+        
+        
         
     }
     

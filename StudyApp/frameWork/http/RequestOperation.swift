@@ -9,6 +9,9 @@ import Foundation
 let baseURLAPI = "http://dangjian.yaoyu-soft.com/langur/api" //api/"; // 测试
 //let baseURLAPI = "http://dkj.free.ngrok.cc/langur/api" //api/";
 //
+
+
+
 typealias proBlock = (_ perceces: Float) -> Void
 typealias finishedTask = (_ data: AnyObject?,_ success: Bool) -> Void
 typealias startLoaing = () -> Void
@@ -313,8 +316,15 @@ class UserRequest : SuperHttpRequest {
     override func configParater() {
         if isAdduserid {
             addBodyInt(valueInt: UserInfoModel.getUserId(), key: "managerid"); // 用户id
-
         }
+//        let formate = DateFormatter();
+//        formate.dateFormat = "yyyyMMddHHmmss";
+//        let times = formate.string(from: Date());
+//
+//        addBody(value: times, key: "timestamp");
+//        addBody(value: RequestConfigList.getTokenValue(time: times), key: "assetionkey");
+
+        
     }
 }
 
@@ -642,7 +652,7 @@ class SuperHttpRequest: NSObject {
         }
         
         
-        var request = URLRequest(url: URL(string:paterString)!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 15);
+        var request = URLRequest(url: URL(string:paterString)!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 25);
         request.httpMethod = httpMethod.rawValue;
         
         if postType == .json && bodyParameter != nil {
@@ -672,6 +682,17 @@ class SuperHttpRequest: NSObject {
         request.setValue("no-cache", forHTTPHeaderField: "Cache-Control");
         
         
+        
+        //        let formate = DateFormatter();
+        //        formate.dateFormat = "yyyyMMddHHmmss";
+        let times = Date().timestamp;//formate.string(from: Date());
+        request.setValue(times, forHTTPHeaderField: RequestConfigList.timesamp);
+        request.setValue(RequestConfigList.getTokenValue(time: times), forHTTPHeaderField: RequestConfigList.assetionkey);
+
+        
+        
+        
+        
         let infoDict = Bundle.main.infoDictionary;
         if let appVersion = infoDict?["CFBundleShortVersionString"] as? String{
             request.setValue(appVersion, forHTTPHeaderField: "version");
@@ -697,8 +718,6 @@ class SuperHttpRequest: NSObject {
     
     func encode(str: String) -> String {
         let encode = str.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed);
-        
-    
         return encode!;
     }
     

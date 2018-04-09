@@ -104,7 +104,6 @@ class HistoryViewController: SuperBaseViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "baseCell", for: indexPath) as! HistoryTableViewCell;
-        // ^[1-3][0-9][0-9]|[1-9][0-9]?
         let model = listItem[indexPath.row];
         cell.configCell(idx: indexPath.row,model:model);
         return cell;

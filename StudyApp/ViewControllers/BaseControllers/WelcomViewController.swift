@@ -37,6 +37,9 @@ class WelcomViewController: YyBaseViewController ,UICollectionViewDelegate,UICol
         addView(tempView: pageCtrl);
         pageCtrl.addTarget(self, action: #selector(pageAction(_:)), for: .valueChanged);
 
+    
+        
+    
     }
     
     @objc func pageAction(_ page: UIPageControl) -> Void {

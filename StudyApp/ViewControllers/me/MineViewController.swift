@@ -111,17 +111,24 @@ class MineViewController: SuperBaseViewController {
         isUpAlto = false;
         
         let request = UserRequest(alterImage: image);
+        request.respType = .typeModel;
         request.loadJsonStringFinished { (result, success) in
-          
-            guard let dict = result as? NSDictionary,let code = dict["result_code"] as? Int else{
+            
+            guard let model = result as? BaseModel else{
                 return;
             }
-            if code == ResultCodeType.success.rawValue {
-            }
+            self.showTip(msg:model.result_msg);
             
         };
         
     }
+    
+    //            guard let dict = result as? NSDictionary,let code = dict["result_code"] as? Int else{
+    //                return;
+    //            }
+    //            if code == ResultCodeType.success.rawValue {
+    //
+    //            }
     
     // MARK: - table view delgate
     

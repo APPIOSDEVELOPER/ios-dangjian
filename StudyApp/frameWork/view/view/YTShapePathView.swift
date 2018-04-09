@@ -9,6 +9,7 @@
 import UIKit
 
 enum YTShapeViewType {
+    case pureView
     case typeCicel
     case roundRect
     case arcStroke
@@ -19,6 +20,7 @@ enum YTShapeViewType {
     case thermometertLeftFlag //温度计
     case thermometertRightFlag //温度计
     case lineBarHistory
+    case clickTapDraw
 
 }
 
@@ -32,6 +34,9 @@ class YTShapePathView: UIView {
             setNeedsDisplay();
         }
     }
+    
+    var changeColor = UIColor.red;
+    
     
     private var contentImage: UIImage!
  
@@ -53,6 +58,18 @@ class YTShapePathView: UIView {
         self.init(frame: frame);
         shapeType = type;
         backgroundColor = UIColor.white;
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tap(_:)));
+        addGestureRecognizer(tap);
+        
+        
+        
+    }
+    @objc func tap(_ tap:UITapGestureRecognizer) -> Void {
+//        let point = tap.location(in: self);
+        let rect = bounds;//CGRect.init(x: point.x, y: point.y, width: 10, height: 10);
+        changeColor = randomColor();
+        setNeedsDisplay(rect);
         
         
     }
@@ -78,6 +95,8 @@ class YTShapePathView: UIView {
         }
         
     }
+    
+    
     
     
     override func draw(_ rect: CGRect) {
@@ -163,15 +182,49 @@ class YTShapePathView: UIView {
             path.addRect(.init(x: 2, y: width/2, width: width - 4, height: height - width/2));
             context?.addPath(path);
             context?.fillPath();
+        }else if shapeType == .clickTapDraw {
+            
+            let context = UIGraphicsGetCurrentContext();
+            context?.setFillColor(changeColor.cgColor);
+            context?.addRect(rect);
+            context?.fillPath();
+            context?.closePath();
+            
         }else {
+
+   
+            
+            let colorComponents: [CGFloat] = [0.1,0.9,0.8,1,
+                                              0.4,0,1,1,
+                                              0.8,0,0,1];
+            
+            let locations: [CGFloat] = [0,0.3,0.5,0.7,0.9];
+            if #available(iOS 10.0, *) {
+                let gradient = CGGradient(colorSpace: CGColorSpace.init(name: CGColorSpace.extendedLinearSRGB)!, colorComponents: colorComponents, locations: locations, count: 3)
+                let context = UIGraphicsGetCurrentContext();
+                
+                context?.drawLinearGradient(gradient!, start: .init(x: 0, y: 0), end: .init(x: rect.width, y: rect.height), options: CGGradientDrawingOptions.drawsBeforeStartLocation);
+                
+//                let funcs = CGFunction(info: nil, domainDimension: 9, domain: nil, rangeDimension: 9, range: nil, callbacks: );
+//
+//                let shading = CGShading.init(axialSpace: CGColorSpace.init(name: CGColorSpace.displayP3)!, start: CGPoint.init(x: 0, y: 0), end: CGPoint.init(x: 100, y: 100), function: funcs, extendStart: true, extendEnd: true);
+                
+//                context?.drawShading(<#T##shading: CGShading##CGShading#>)
+            } else {
+                // Fallback on earlier versions
+            }
             
             
+            
+
             
         }
         
         
         
     }
+    
+    
     
     private func updateProgress() -> Void {
         

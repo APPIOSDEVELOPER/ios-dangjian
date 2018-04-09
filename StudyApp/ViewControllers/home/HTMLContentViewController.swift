@@ -93,8 +93,13 @@ class HTMLContentViewController: SuperBaseViewController,UITextFieldDelegate {
             guard let model = result as? BaseModel else{
                 return;
             }
-            let subModel = model.baseDataModel as? NewsDetialModel;
-            self.baseWebView.loadHTMLString(subModel!.post_content, baseURL: nil);
+            
+//            if let subModel = model.baseDataModel as? NewsDetialModel {
+//                self.baseWebView.loadHTMLString(subModel.post_content, baseURL: nil);
+//
+//            }else{
+//                self.showTip(msg: model.result_msg);
+//            }
         };
         
     }
@@ -202,7 +207,10 @@ class HTMLContentViewController: SuperBaseViewController,UITextFieldDelegate {
             guard let url = URL(string: linkURL) else {
                 return;
             }
-            let request = URLRequest(url: url);
+            var request = URLRequest(url: url);
+            let timestamp = Date().timestamp;
+            request.setValue(timestamp, forHTTPHeaderField: RequestConfigList.timesamp);
+            request.setValue(RequestConfigList.getTokenValue(time: timestamp), forHTTPHeaderField: RequestConfigList.assetionkey);
             baseWebView.load(request);
         }
     }

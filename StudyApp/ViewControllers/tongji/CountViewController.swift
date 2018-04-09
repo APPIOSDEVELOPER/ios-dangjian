@@ -73,8 +73,10 @@ class CountViewController: SuperBaseViewController {
             cell.configCell(model: dataModel);
             return cell;
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PNLineCharTableViewCell", for: indexPath);
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PNLineCharTableViewCell", for: indexPath) as! PNLineCharTableViewCell;
+        if let list = dataModel?.weekInfoCount {
+            cell.config(list: list);
+        }
         return cell;
     }
     
@@ -254,8 +256,8 @@ class SecondTableCell: BaseTableViewCell {
 }
 
 class PNLineCharTableViewCell: BaseTableViewCell {
-    var lineChar: PNLineChart!
-    
+    private var lineChar: PNLineChart!
+    private var dataItem: PNLineChartData!
     override func initView() {
         lineChar = PNLineChart(frame: .init(x: 10, y: 10, width: sWidth - 20, height: 180));
         addSubview(lineChar);
@@ -272,9 +274,8 @@ class PNLineCharTableViewCell: BaseTableViewCell {
         lineChar.yLabelColor = UIColor.red;
         lineChar.yGridLinesColor = UIColor.lightGray;
         
-        let dataItem = PNLineChartData.init();
+        dataItem = PNLineChartData.init();
         dataItem.color = rgbColor(r: 236, g: 138, b: 116);
-        dataItem.itemCount = 7;
         dataItem.inflexionPointStyle = .circle;
         dataItem.showPointLabel = true;
 
@@ -282,11 +283,16 @@ class PNLineCharTableViewCell: BaseTableViewCell {
         dataItem.pointLabelFont = fontSize(size: 12);
         dataItem.pointLabelFormat = "%1.1f";
         
-        let pnData = [2,20,1,30,5,12,10,23];
         
+    }
+    
+    func config(list: [Int]) -> Void {
+        
+        dataItem.itemCount = UInt(list.count);
+
         dataItem.getData = {
             (index) -> PNLineChartDataItem in
-            return PNLineChartDataItem(y: CGFloat(pnData[Int(index)]));
+            return PNLineChartDataItem(y: CGFloat(list[Int(index)]));
         }
         lineChar.chartData = [dataItem];
         lineChar.stroke();
@@ -301,14 +307,32 @@ class CountBordModel: BaseModel {
     @objc var committeeCount = "0";
     @objc var branchCount = "0";
     @objc var totleInfoCount = "0";
+    @objc var weekInfoCount: [Int]!
     
-//    override func setValue(_ value: Any?, forKey key: String) {
-//        guard let cd = value as? String, let count = Int(cd) else {
-//            return;
-//        }
-//        super.setValue(count, forKey: key);
-//
-//    }
+    override func setValue(_ value: Any?, forKey key: String) {
+        
+        switch key {
+        case "weekInfoCount":
+            guard let dict = value as? NSDictionary else{
+                return ;
+            }
+            weekInfoCount = [Int]();
+            for item in dict {
+                guard let countStr = item.value as? String,
+                 let count = Int(countStr) else{
+                    continue;
+                }
+                
+                
+                weekInfoCount.append(count);
+            }
+            
+        default:
+            super.setValue(value, forKey: key);
+        }
+        
+
+    }
 
 }
 
