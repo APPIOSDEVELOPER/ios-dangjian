@@ -21,6 +21,7 @@ enum YTShapeViewType {
     case thermometertRightFlag //温度计
     case lineBarHistory
     case clickTapDraw
+    case gradientType
 
 }
 
@@ -190,7 +191,7 @@ class YTShapePathView: UIView {
             context?.fillPath();
             context?.closePath();
             
-        }else {
+        }else if shapeType == .gradientType {
 
    
             
@@ -205,18 +206,23 @@ class YTShapePathView: UIView {
                 
                 context?.drawLinearGradient(gradient!, start: .init(x: 0, y: 0), end: .init(x: rect.width, y: rect.height), options: CGGradientDrawingOptions.drawsBeforeStartLocation);
                 
-//                let funcs = CGFunction(info: nil, domainDimension: 9, domain: nil, rangeDimension: 9, range: nil, callbacks: );
-//
-//                let shading = CGShading.init(axialSpace: CGColorSpace.init(name: CGColorSpace.displayP3)!, start: CGPoint.init(x: 0, y: 0), end: CGPoint.init(x: 100, y: 100), function: funcs, extendStart: true, extendEnd: true);
-                
-//                context?.drawShading(<#T##shading: CGShading##CGShading#>)
+
             } else {
                 // Fallback on earlier versions
             }
             
             
+        }else {
             
-
+            let context = UIGraphicsGetCurrentContext();
+            let fonts = fontBlod(size: 12).fontName;
+            let ft = CGFont.init(fonts as CFString)
+            context?.setFont(ft!);
+            context?.setFontSize(19);
+            NSString.init(string: "第一个draaw").draw(in: .init(x: 0, y: 0, width: 100, height: 20), withAttributes: [NSAttributedStringKey.font:fontBlod(size: 12),NSAttributedStringKey.foregroundColor:UIColor.blue])
+            NSString.init(string: "第二个").draw(in: .init(x: 0, y: 30, width: 100, height: 30), withAttributes: nil);
+            context?.setStrokeColor(UIColor.red.cgColor)
+            context?.strokePath()
             
         }
         

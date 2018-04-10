@@ -328,9 +328,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UITabBarControllerDelegat
     
     func installUmen()  {
         
-//        UMConfigure.initWithAppkey(umengKey, channel: "App Store");
-//        UMConfigure.setLogEnabled(true);
-//        MobClick.setScenarioType(.E_UM_NORMAL);
+        UMConfigure.initWithAppkey(umengKey, channel: "App Store");
+        UMConfigure.setLogEnabled(true);
+        MobClick.setScenarioType(.E_UM_NORMAL);
         
         
         

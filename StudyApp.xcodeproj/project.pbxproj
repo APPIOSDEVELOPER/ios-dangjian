@@ -259,11 +259,15 @@
 		F73836E2206B2AC0006D0E97 /* DoptStedeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73835E4206B2ABF006D0E97 /* DoptStedeView.swift */; };
 		F73836E3206B2AC0006D0E97 /* DragTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73835E5206B2ABF006D0E97 /* DragTestView.swift */; };
 		F73836E4206B2AC0006D0E97 /* GraphicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73835E6206B2ABF006D0E97 /* GraphicView.swift */; };
+		F74D8D0B207B0E4E00A040EE /* CommentBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74D8D0A207B0E4E00A040EE /* CommentBarView.swift */; };
+		F75548CD207C7FEE003FD966 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75548C0207C7FED003FD966 /* UMAnalytics.framework */; };
+		F75548CE207C7FEE003FD966 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F75548C4207C7FED003FD966 /* UMCommon.framework */; };
 		F75E2C43206B3323007C9ACA /* AppExtenConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75E2C40206B3322007C9ACA /* AppExtenConfig.swift */; };
 		F75E2C44206B3323007C9ACA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75E2C41206B3322007C9ACA /* AppDelegate.swift */; };
 		F75E2C45206B3323007C9ACA /* AppParamterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75E2C42206B3323007C9ACA /* AppParamterConfig.swift */; };
 		F75E2C47206B3922007C9ACA /* share_icon_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F75E2C46206B3922007C9ACA /* share_icon_3@2x.png */; };
 		F75EB1422074855F009DD8FF /* RequestConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75EB1412074855F009DD8FF /* RequestConfig.swift */; };
+		F77336D4207B13BA00DB8167 /* MessageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77336D3207B13BA00DB8167 /* MessageItemModel.swift */; };
 		F77AF5841EA4B64D002A6530 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F77AF5831EA4B64D002A6530 /* libsqlite3.tbd */; };
 		F77AF5861EA4B655002A6530 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77AF5851EA4B655002A6530 /* CoreGraphics.framework */; };
 		F7962D5420037C9D00510B1B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7962D5320037C9D00510B1B /* MapKit.framework */; };
@@ -629,6 +633,9 @@
 		F73835E4206B2ABF006D0E97 /* DoptStedeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoptStedeView.swift; sourceTree = "<group>"; };
 		F73835E5206B2ABF006D0E97 /* DragTestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DragTestView.swift; sourceTree = "<group>"; };
 		F73835E6206B2ABF006D0E97 /* GraphicView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphicView.swift; sourceTree = "<group>"; };
+		F74D8D0A207B0E4E00A040EE /* CommentBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentBarView.swift; sourceTree = "<group>"; };
+		F75548C0207C7FED003FD966 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		F75548C4207C7FED003FD966 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
 		F75E2C40206B3322007C9ACA /* AppExtenConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppExtenConfig.swift; sourceTree = "<group>"; };
 		F75E2C41206B3322007C9ACA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F75E2C42206B3323007C9ACA /* AppParamterConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppParamterConfig.swift; sourceTree = "<group>"; };
@@ -636,6 +643,7 @@
 		F75EB1412074855F009DD8FF /* RequestConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfig.swift; sourceTree = "<group>"; };
 		F76A8E5A1F75201D00825F4F /* StudyApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudyApp.entitlements; sourceTree = "<group>"; };
 		F7702A5F1E9C839700C50A0F /* StudyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F77336D3207B13BA00DB8167 /* MessageItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItemModel.swift; sourceTree = "<group>"; };
 		F77AF5831EA4B64D002A6530 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		F77AF5851EA4B655002A6530 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		F7962D5320037C9D00510B1B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -667,7 +675,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7BA2E4E1EB0A0040036B607 /* SystemConfiguration.framework in Frameworks */,
+				F75548CD207C7FEE003FD966 /* UMAnalytics.framework in Frameworks */,
 				F7383629206B2AC0006D0E97 /* libWeiboSDK.a in Frameworks */,
+				F75548CE207C7FEE003FD966 /* UMCommon.framework in Frameworks */,
 				F77AF5841EA4B64D002A6530 /* libsqlite3.tbd in Frameworks */,
 				F7BA2E271EB094D10036B607 /* libz.tbd in Frameworks */,
 				F7BA2E501EB0A0140036B607 /* CoreTelephony.framework in Frameworks */,
@@ -1085,6 +1095,8 @@
 		F73834F3206B2ABF006D0E97 /* UMSocial */ = {
 			isa = PBXGroup;
 			children = (
+				F75548BE207C7FED003FD966 /* analytics */,
+				F75548C1207C7FED003FD966 /* common */,
 				F73834F4206B2ABF006D0E97 /* sharemanger */,
 				F73834F6206B2ABF006D0E97 /* sns_icon_1@2x.png */,
 				F73834F7206B2ABF006D0E97 /* sns_icon_2@2x.png */,
@@ -1152,6 +1164,7 @@
 				F738350B206B2ABF006D0E97 /* BaseCustomView.swift */,
 				F738350C206B2ABF006D0E97 /* KeybaordCustomView.swift */,
 				F738350D206B2ABF006D0E97 /* YTShapePathView.swift */,
+				F74D8D0A207B0E4E00A040EE /* CommentBarView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1218,6 +1231,7 @@
 				F7383529206B2ABF006D0E97 /* action */,
 				F738352D206B2ABF006D0E97 /* BaseModel.swift */,
 				F738352E206B2ABF006D0E97 /* ContentDetialModel.swift */,
+				F77336D3207B13BA00DB8167 /* MessageItemModel.swift */,
 				F738352F206B2ABF006D0E97 /* homw */,
 				F7383533206B2ABF006D0E97 /* PartyModel.swift */,
 				F7383534206B2ABF006D0E97 /* UserInfoModel.swift */,
@@ -1643,6 +1657,46 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		F75548BE207C7FED003FD966 /* analytics */ = {
+			isa = PBXGroup;
+			children = (
+				F75548BF207C7FED003FD966 /* analytics_ios_5.5.0 */,
+			);
+			path = analytics;
+			sourceTree = "<group>";
+		};
+		F75548BF207C7FED003FD966 /* analytics_ios_5.5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				F75548C0207C7FED003FD966 /* UMAnalytics.framework */,
+			);
+			path = analytics_ios_5.5.0;
+			sourceTree = "<group>";
+		};
+		F75548C1207C7FED003FD966 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				F75548C2207C7FED003FD966 /* common_ios_1.5.0 */,
+			);
+			path = common;
+			sourceTree = "<group>";
+		};
+		F75548C2207C7FED003FD966 /* common_ios_1.5.0 */ = {
+			isa = PBXGroup;
+			children = (
+				F75548C3207C7FED003FD966 /* normal */,
+			);
+			path = common_ios_1.5.0;
+			sourceTree = "<group>";
+		};
+		F75548C3207C7FED003FD966 /* normal */ = {
+			isa = PBXGroup;
+			children = (
+				F75548C4207C7FED003FD966 /* UMCommon.framework */,
+			);
+			path = normal;
+			sourceTree = "<group>";
+		};
 		F7702A561E9C839700C50A0F = {
 			isa = PBXGroup;
 			children = (
@@ -2007,6 +2061,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F74D8D0B207B0E4E00A040EE /* CommentBarView.swift in Sources */,
 				F73836C0206B2AC0006D0E97 /* HistoryViewController.swift in Sources */,
 				F7383620206B2AC0006D0E97 /* UIImageView+HighlightedWebCache.m in Sources */,
 				F73836C6206B2AC0006D0E97 /* HomeViewController.swift in Sources */,
@@ -2059,6 +2114,7 @@
 				F73836DA206B2AC0006D0E97 /* PicViewController.swift in Sources */,
 				F73836C3206B2AC0006D0E97 /* CiecleLayout.swift in Sources */,
 				F75E2C43206B3323007C9ACA /* AppExtenConfig.swift in Sources */,
+				F77336D4207B13BA00DB8167 /* MessageItemModel.swift in Sources */,
 				F73835FE206B2AC0006D0E97 /* JHColumnItem.m in Sources */,
 				F738364E206B2AC0006D0E97 /* StudyListModel.swift in Sources */,
 				F73836CB206B2AC0006D0E97 /* ForFuncViewController.swift in Sources */,
@@ -2285,6 +2341,10 @@
 					"$(PROJECT_DIR)/StudyApp/frameWork/shareSDK/Support/Optional",
 					"$(PROJECT_DIR)/StudyApp/frameWork/shareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/StudyApp/frameWork/shareSDK/Support/Required",
+					"$(PROJECT_DIR)/StudyApp/frameWork/UMSocial/common/common_ios_1.5.0/normal",
+					"$(PROJECT_DIR)/StudyApp/frameWork/UMSocial/analytics/analytics_ios_5.5.0",
+					"$(PROJECT_DIR)/StudyApp/frameWork/UMSocial/umcommonlog/umcommonlog_ios_1.0.0",
+					"$(PROJECT_DIR)/StudyApp/frameWork/UMSocial/thirdparties/thirdparties_ios_1.0.5",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2360,6 +2420,10 @@
 					"$(PROJECT_DIR)/StudyApp/frameWork/shareSDK/Support/Optional",
 					"$(PROJECT_DIR)/StudyApp/frameWork/shareSDK/Support/PlatformSDK/QQSDK",
 					"$(PROJECT_DIR)/StudyApp/frameWork/shareSDK/Support/Required",
+					"$(PROJECT_DIR)/StudyApp/frameWork/UMSocial/common/common_ios_1.5.0/normal",
+					"$(PROJECT_DIR)/StudyApp/frameWork/UMSocial/analytics/analytics_ios_5.5.0",
+					"$(PROJECT_DIR)/StudyApp/frameWork/UMSocial/umcommonlog/umcommonlog_ios_1.0.0",
+					"$(PROJECT_DIR)/StudyApp/frameWork/UMSocial/thirdparties/thirdparties_ios_1.0.5",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

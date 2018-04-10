@@ -680,12 +680,8 @@ class SuperHttpRequest: NSObject {
         
         request.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset");
         request.setValue("no-cache", forHTTPHeaderField: "Cache-Control");
-        
-        
-        
-        //        let formate = DateFormatter();
-        //        formate.dateFormat = "yyyyMMddHHmmss";
-        let times = Date().timestamp;//formate.string(from: Date());
+
+        let times = Date().timestamp;
         request.setValue(times, forHTTPHeaderField: RequestConfigList.timesamp);
         request.setValue(RequestConfigList.getTokenValue(time: times), forHTTPHeaderField: RequestConfigList.assetionkey);
 

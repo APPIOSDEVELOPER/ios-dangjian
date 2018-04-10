@@ -305,6 +305,11 @@ class YyBaseViewController: UIViewController,UITableViewDelegate,UITableViewData
         contentScrollView.showsHorizontalScrollIndicator = false;
         contentScrollView.keyboardDismissMode = .onDrag;
         self.automaticallyAdjustsScrollViewInsets = false;
+        if #available(iOS 11.0, *) {
+            contentScrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        };
 
     }
     
@@ -342,6 +347,12 @@ class YyBaseViewController: UIViewController,UITableViewDelegate,UITableViewData
         baseTable.tableFooterView = UIView();
         baseTable.estimatedSectionHeaderHeight = 0;
         baseTable.estimatedRowHeight = 0;
+        
+        if #available(iOS 11.0, *) {
+            baseTable.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        };
     }
     
     func addRefresh() -> Void {

@@ -85,8 +85,8 @@
 //#import <UMSocialCore/UMSocialCore.h>
 //#import <UMMobClick/MobClick.h>
 
-//#import <UMCommon/UMCommon.h>           // 公共组件是所有友盟产品的基础组件，必选
-//#import <UMAnalytics/MobClick.h>        // 统计组件
+#import <UMCommon/UMCommon.h>           // 公共组件是所有友盟产品的基础组件，必选
+#import <UMAnalytics/MobClick.h>        // 统计组件
 //#import <UMShare/UMShare.h>    // 分享组件
 //#import <UserNotifications/UserNotifications.h>  // Push组件必须的系统库
 

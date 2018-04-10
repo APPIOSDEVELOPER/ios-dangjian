@@ -25,7 +25,8 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
     
     private var subTitle: String?;
     
-    
+    var commentDetialList: [CommentDeitalModel]!
+
 
     private var tableContentSize = CGSize.zero;
     private var scrollContentSize = CGSize.zero;
@@ -34,21 +35,32 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        setContentScrollView(rect: nil);
+        let bd = UIView();
+        addView(tempView: bd);
         
-        self.automaticallyAdjustsScrollViewInsets = false;
+        
+        setContentScrollView(rect: CGRect.init(x: 0, y: 0, width: width(), height: height() - 50));
+//        contentScrollView.layer.borderWidth = 2;
+//        contentScrollView.layer.borderColor = UIColor.blue.cgColor;
+
+        
         
         self.navigationController?.navigationBar.tintColor = UIColor.white;
         
         
         baseWebView = CustomWebView.createWebView(frame: navigateRect);
         contentScrollView.addSubview(baseWebView);
-        baseWebView.scrollView.isScrollEnabled = false;
+//        baseWebView.scrollView.isScrollEnabled = false;
+//        baseWebView.layer.borderColor = UIColor.green.cgColor;
+//        baseWebView.layer.borderWidth = 44;
         
-//        baseWebView.scrollView.mj_header = MJRefreshNormalHeader(refreshingBlock: {
-//            self.loadDataFromNet(net: true);
-//        });
+        if #available(iOS 11.0, *) {
+            baseWebView.scrollView.contentInsetAdjustmentBehavior = .never
+        } else {
+            // Fallback on earlier versions
+        };
         
+
         
         commentView = BaseCustomView(frame: .init(x: 0, y: height() - 50, width: width(), height: 50), type: .commentItemView);
         commentView.textField.delegate = self;
@@ -62,12 +74,14 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
         commentView.isHidden = !isShowInpuView;
         
         createTable(delegate: self);
-        baseTable.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "UITableViewCell");
+        baseTable.register(CommentTableCell.classForCoder(), forCellReuseIdentifier: "CommentTableCell");
         baseTable.removeFromSuperview();
         baseTable.rowHeight = UITableViewAutomaticDimension;
         baseTable.estimatedRowHeight = 100;
         baseTable.isScrollEnabled = false;
+        baseTable.separatorStyle = .singleLine;
         contentScrollView.addSubview(baseTable);
+//        baseTable.backgroundColor = UIColor.red;
     }
     
     @objc override func buttonAction(btn: UIButton) {
@@ -104,6 +118,7 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
             self.baseWebView.loadHTMLString(subModel!.post_content, baseURL: nil);
         };
         
+        loadCommentList();
     }
     // 获取评论 14
     // 评论
@@ -117,9 +132,9 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
                 let items = model.baseDataList as? [CommentDeitalModel] else{
                     return;
             }
-//            self?.commentDetialList = items;
+            self?.commentDetialList = items;
 //            self?.tableheaderView.messageLabel.text = "评论(\(items.count))"
-//            self?.baseTable.reloadData();
+            self?.baseTable.reloadData();
             
         };
     }
@@ -131,8 +146,7 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
             guard let model = result as? NSDictionary else{
                 return;
             }
-            //            let subModel = model.baseDataModel as? NewsDetialModel;
-            //            print("subm = \(subModel?.post_content)")
+            self.loadCommentList();
             
             
         };
@@ -143,13 +157,13 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
     // MARK: - table view delegate
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10;
+        return commentDetialList?.count ?? 0;
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath);
-        cell.textLabel?.text = "adfdsf";
-        cell.textLabel?.numberOfLines = 0;
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableCell", for: indexPath) as! CommentTableCell;
+        let item = commentDetialList[indexPath.row];
+        cell.configCell(model: item);
         return cell;
         
     }
@@ -219,7 +233,7 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
 
             if object is FMBaseTableView {
                 if !scrollContentSize.equalTo(CGSize.zero) {
-                    contentScrollView.contentSize = .init(width: 0, height: scrollContentSize.height + contentSize!.height);
+                    contentScrollView.contentSize = .init(width: 0, height: scrollContentSize.height + contentSize!.height + 44);
                 }
                 tableContentSize = contentSize!;
                 baseTable.frame.size.height = contentSize!.height;
@@ -227,15 +241,15 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
             }else if object is UIScrollView {
                 
                 baseWebView.frame.size = contentSize!;
-                baseTable.frame.origin = CGPoint.init(x: 0, y: contentSize!.height);
+                baseTable.frame.origin = CGPoint.init(x: 0, y: contentSize!.height + 44);
                 scrollContentSize = contentSize!;
                 if !tableContentSize.equalTo(CGSize.zero) {
-                    contentScrollView.contentSize = .init(width: 0, height: tableContentSize.height + contentSize!.height);
+                    contentScrollView.contentSize = .init(width: scrollContentSize.width, height: tableContentSize.height + contentSize!.height + 44);
 
                 }
             }
             
-            print("T:\(tableContentSize),W:\(scrollContentSize),S:\(contentScrollView.contentSize)");
+//            print("T:\(tableContentSize),W:\(scrollContentSize),S:\(contentScrollView.contentSize)");
             
             
             
@@ -269,7 +283,10 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
             guard let url = URL(string: linkURL) else {
                 return;
             }
-            let request = URLRequest(url: url);
+            var request = URLRequest(url: url);
+            let timestamp = Date().timestamp;
+            request.setValue(timestamp, forHTTPHeaderField: RequestConfigList.timesamp);
+            request.setValue(RequestConfigList.getTokenValue(time: timestamp), forHTTPHeaderField: RequestConfigList.assetionkey);
             baseWebView.load(request);
         }
     }

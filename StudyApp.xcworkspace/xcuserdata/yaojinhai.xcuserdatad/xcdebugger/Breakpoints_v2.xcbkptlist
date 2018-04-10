@@ -202,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyApp/APPConfig/AppDelegate.swift"
-            timestampString = "544065994.59911"
+            timestampString = "545041503.217062"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
@@ -217,29 +217,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StudyApp/ViewControllers/home/NewCommentViewController.swift"
-            timestampString = "544351361.551953"
+            filePath = "StudyApp/ViewControllers/home/HomeContentViewController.swift"
+            timestampString = "545041503.2171659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "loadCommentList()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StudyApp/ViewControllers/home/NewCommentViewController.swift"
-            timestampString = "544351361.552062"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "commentNews()"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "selectedItem(subView:model:type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

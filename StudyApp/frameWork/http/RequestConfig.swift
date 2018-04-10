@@ -36,6 +36,5 @@ extension Date {
     var timestamp: String {
         return Date.formate.string(from: self);
     }
-    
 }
 

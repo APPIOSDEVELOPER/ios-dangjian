@@ -7,7 +7,7 @@
 import UIKit
 
 
-class HomeContentViewController: SuperBaseViewController,UICollectionViewDelegate,UICollectionViewDataSource {
+class HomeContentViewController: SuperBaseViewController,UICollectionViewDelegate,UICollectionViewDataSource,CommentBarViewdelegate {
     
     
     var navigateScrollView: FMBaseCollectionView!
@@ -96,12 +96,14 @@ class HomeContentViewController: SuperBaseViewController,UICollectionViewDelegat
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
         
-//        let subView = YTShapePathView(frame: .init(x: 10, y: 100, width: 200, height: 200), type: .pureView);
-//        self.view.addSubview(subView);
+//        let subView = CommentBarView(frame: .init(x: 10, y: 100, width: sWidth - 20, height: 500));
+//        addView(tempView: subView);
+//        subView.delegate = self;
+//        subView.backgroundColor = UIColor.lightGray;
+    }
+    func selectedItem(subView: CommentBarView, model: MessageItemModel, type: MessageModelType) {
         
-        
-        
-    
+        print("type = \(type),model = \(model.name)")
     }
     
     
@@ -159,7 +161,7 @@ class HomeContentViewController: SuperBaseViewController,UICollectionViewDelegat
     }
     
     func enterHTMLContent(url: String,id: Int) -> Void {
-        let ctrl = HTMLContentViewController();
+        let ctrl = NewCommentViewController();
         ctrl.linkURL = url;
         ctrl.id = id;
         ctrl.title = textTitle;
