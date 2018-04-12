@@ -164,7 +164,8 @@ class UserRequest : SuperHttpRequest {
     convenience init(commited: [[String:Any]]) {
         self.init();
         pathName = "square/answer";
-//        httpMethod = .POST;
+        httpMethod = .POST;
+        postType = .json;
         
         
         
@@ -364,11 +365,10 @@ class SuperHttpRequest: NSObject {
     
     var state = HttpState.ready;
     
-    var parameter = [String:String]();
     var bodyParameter: [String:String]!;
-    var bodyDataParamter: [String:String]!
     
-    var bodyImageData: [String:UIImage]!
+    
+    lazy var paramterList = [HttpParamterModel]();
     
     
     var albumId: Int64 = 1;
@@ -390,9 +390,6 @@ class SuperHttpRequest: NSObject {
         self.fileName = baseUrl;
     
     }
-    
-    
-    
 
 
     class func cancel(_ url: String) {
@@ -400,26 +397,28 @@ class SuperHttpRequest: NSObject {
     }
     
     func add(value: String,key: String) {
-        parameter[key] = value;
+        let model = HttpParamterModel(key: key, value: value);
+        paramterList.append(model);
+        
     }
     
     func add(valueInt: Int, key: String) -> Void {
-        parameter[key] = "\(valueInt)";
+        add(value: "\(valueInt)", key: key);
     }
     
-    func addBodyPathName(valueData: String,key: String) -> Void {
-        if bodyDataParamter == nil {
-            bodyDataParamter = [String:String]();
-        }
-        bodyDataParamter[key] = valueData;
-        
-    }
+
     
     func addBodyInt(valueInt: Int,key: String) -> Void {
         addBody(value: "\(valueInt)", key: key);
     }
     
     func addBody(value: String?,key: String) -> Void {
+        
+        if let value = value {
+            let model = HttpParamterModel(key: key, value: value,isBody: true);
+            paramterList.append(model);
+        }
+        
         if bodyParameter == nil {
             bodyParameter = [String:String]();
         }
@@ -429,10 +428,13 @@ class SuperHttpRequest: NSObject {
     }
     
     func addBodyImageData(image: UIImage?,key: String) -> Void {
-        if bodyImageData == nil {
-            bodyImageData = [String:UIImage]();
+        
+        if let image = image {
+            let model = HttpParamterModel(key: key, valueData: image.pngData);
+            paramterList.append(model);
+            
         }
-        bodyImageData[key] = image;
+       
     }
     
     func addBodyArray(values: [Int],key: String) -> Void {
@@ -446,177 +448,8 @@ class SuperHttpRequest: NSObject {
     func configParater()  {
         
     }
-    
-    
-    func configBody() -> Data? {
-        
-        guard let paraterDict = bodyParameter else {
-            return nil;
-        }
-        
-        let boundary = "--" + bodyBoundary() + "\r\n";
-        
-        var bodyData = Data();
-        
-        let boundaryData = boundary.data(using: .utf8);
-        for item in paraterDict {
-            bodyData.append(boundaryData!);
-            
-            let key = item.key;
-  
-            let formStrl = "Content-Disposition: form-data; name=" + "\"" + key + "\"" + "\r\n\r\n";
-            bodyData.append(formStrl.data(using: .utf8)!);
-            bodyData.append(item.value.data(using: .utf8)!);
-            bodyData.append("\r\n".data(using: .utf8)!);
-        }
-        
-        let boundaryEnd = "\r\n--" + bodyBoundary() + "--\r\n"
-        bodyData.append(boundaryEnd.data(using: .utf8)!);
-        
-        return bodyData;
-        
-        
 
-    }
-    
-    // MARK: - 配置 request 参数
-    
-    func getBodyDataParamter() -> Data? {
-        guard let dataParater = bodyImageData else {
-            return nil;
-        }
-        
-        let boundary = "--" + bodyBoundary() + "\r\n";
-        
-        var bodyData = Data();
-        
-        let boundaryData = boundary.data(using: .utf8);
-        
-        if let paraterDict = bodyParameter {
-            
-            for item in paraterDict {
-                bodyData.append(boundaryData!);
-                
-                let key = item.key;
-                let formStrl = "Content-Disposition: form-data; name=" + "\"" + key + "\"" + "\r\n\r\n";
-                bodyData.append(formStrl.data(using: .utf8)!);
-                bodyData.append(item.value.data(using: .utf8)!);
-                bodyData.append("\r\n".data(using: .utf8)!);
-            }
-        }
-        
-//        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first;
-        
-        
-        for item in dataParater {
-            
-            bodyData.append(boundaryData!);
-            
-            let contentType = "image/png";
-            let name = "file";
-            let fileName = item.key;
-            
-            let formStrl = "Content-Disposition: form-data; name=" + "\"" + name + "\"" + ";fileName=\"\(fileName)\";" + contentType + "\r\n\r\n";
-            
-            bodyData.append(formStrl.data(using: .utf8)!);
-            
-            let imageData = item.value
-            let data = UIImageJPEGRepresentation(imageData, 0.8)
-            bodyData.append(data!);
-            
-//            let imageData = "image.png";
-//            bodyData.append(imageData.data(using: String.Encoding.utf8)!);
-        }
-        let boundaryEnd = "\r\n--" + bodyBoundary() + "--\r\n"
-        bodyData.append(boundaryEnd.data(using: .utf8)!);
-        return bodyData;
-    }
-    
-    
-//    func getBodyDataParamter() -> Data? {
-//        guard let dataParater = bodyDataParamter else {
-//            return nil;
-//        }
-//
-//        let boundary = "--" + bodyBoundary() + "\r\n";
-//
-//        var bodyData = Data();
-//
-//        let boundaryData = boundary.data(using: .utf8);
-//
-//        if let paraterDict = bodyParameter {
-//
-//            for item in paraterDict {
-//                bodyData.append(boundaryData!);
-//
-//                let key = item.key;
-//                let formStrl = "Content-Disposition: form-data; name=" + "\"" + key + "\"" + "\r\n\r\n";
-//                bodyData.append(formStrl.data(using: .utf8)!);
-//                bodyData.append(item.value.data(using: .utf8)!);
-//                bodyData.append("\r\n".data(using: .utf8)!);
-//            }
-//        }
-//
-//
-//
-//
-//
-//        let path = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first;
-//
-//
-//        for item in dataParater {
-//
-//            bodyData.append(boundaryData!);
-//
-//            var contentType = "Content-Type= audio/mp3";
-//            if item.value.lowercased().contains("png") || item.value.lowercased().contains("jpg") {
-//                contentType = "image/png";
-//            }
-//
-//            var key = item.key;
-//            if key.contains("image[idex]") {
-//                key = "image[]";
-//            }
-//
-//
-//            let formStrl = "Content-Disposition: form-data; name=" + "\"" + key + "\"" + ";fileName=\"\(item.value)\";" + contentType + "\r\n\r\n";
-//
-//            bodyData.append(formStrl.data(using: .utf8)!);
-//
-//            if item.value.lowercased().contains("png") || item.value.lowercased().contains("jpg") {
-//
-//                if let imageData = bodyImageData?[item.value] {
-//
-//                    let data = UIImageJPEGRepresentation(imageData, 0.8)
-//                    bodyData.append(data!);
-//
-//                }else if let dataImage = UIImage.init(contentsOfFile: (path!.appending("/" + item.value))),
-//                    let data = UIImageJPEGRepresentation(dataImage, 0.8) {
-//                    bodyData.append(data);
-//                }
-//
-//            }else {
-//                let dataPath = RecorderManger.mp3Path();
-//                if let data = try? Data.init(contentsOf: URL.init(fileURLWithPath: dataPath)) {
-//                    bodyData.append(data);
-//                }else{
-//
-//                    printObject("\n##########################################\n录音文件没有保存\nmp3Pah = \(dataPath)\n##########################################\n");
-//                }
-//            }
-//        }
-//        let boundaryEnd = "\r\n--" + bodyBoundary() + "--\r\n"
-//        bodyData.append(boundaryEnd.data(using: .utf8)!);
-//
-//
-//
-//        return bodyData;
-//    }
-    
-    func contentDispostion() -> String {
-       return "form-data";
-        
-    }
+
     
     private func bodyBoundary() -> String {
         return "wfWiEWrgEFA9A78512weF7106A";
@@ -629,27 +462,14 @@ class SuperHttpRequest: NSObject {
         configParater();
 
         
-        var paterString = encode(str: baseURLAPI.appending("/\(self.pathName)"));
+        var paterString = baseURLAPI.appending("/\(self.pathName)").encode;
+        
         if self.stringURL.hasPrefix("http") {
             paterString = self.stringURL;
         }
         
-        if parameter.count > 0 {
-            paterString.insert("?", at: paterString.endIndex);
-        }
-        
-        for value in parameter {
-            let valueString = encode(str: value.key) + "=" + encode(str: value.value) + "&";
-            paterString = paterString.appending(valueString);
-            
-        }
-        if parameter.count > 0 {
-            
-//            paterString = paterString.substring(to: paterString.index(before: paterString.endIndex));
-//            paterString = String(paterString[paterString.startIndex..<paterString.index(before: paterString.endIndex)]);
-            paterString = String(paterString.dropLast());
-            
-        }
+        let keyValue = HttpParamterModel.getPairKeyAndValue(list: paramterList);
+        paterString = paterString + keyValue;
         
         
         var request = URLRequest(url: URL(string:paterString)!, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 25);
@@ -657,24 +477,27 @@ class SuperHttpRequest: NSObject {
         
         if postType == .json && bodyParameter != nil {
             
-            let bodyData = try? JSONSerialization.data(withJSONObject: bodyParameter, options: .prettyPrinted);
             
-            request.httpBody = bodyData;
+            let tempData = bodyParameter["answer"];
+            var bodyData: Data!
+            if tempData != nil {
+                bodyData = tempData!.data(using: String.Encoding.utf8);
+                
+                request.httpBody = bodyData;
+            }else{
+                bodyData = try? JSONSerialization.data(withJSONObject: bodyParameter, options: .prettyPrinted);
+                
+                request.httpBody = bodyData;
+            }
             
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json;charset=UTF-8", forHTTPHeaderField: "Content-Type")
             request.setValue("\(bodyData!.count)", forHTTPHeaderField: "Content-Length")
             
-        }else if let bodyData = getBodyDataParamter() {
-            request.httpBody = bodyData
-            
-            request.setValue("multipart/form-data;boundary=" + bodyBoundary(), forHTTPHeaderField: "Content-Type");
-            request.setValue("\(bodyData.count)", forHTTPHeaderField: "Content-Length")
-            
-        }else  if let bodyData = configBody() {
+        }else if let bodyData = HttpParamterModel.getHttpBodyData(paramterList: paramterList, bodyBoundary: bodyBoundary()) {
             request.httpBody = bodyData
             request.setValue("multipart/form-data;boundary=" + bodyBoundary(), forHTTPHeaderField: "Content-Type");
             request.setValue("\(bodyData.count)", forHTTPHeaderField: "Content-Length")
-
+            
         }
         
         
@@ -685,7 +508,7 @@ class SuperHttpRequest: NSObject {
         request.setValue(times, forHTTPHeaderField: RequestConfigList.timesamp);
         request.setValue(RequestConfigList.getTokenValue(time: times), forHTTPHeaderField: RequestConfigList.assetionkey);
 
-        
+        request.setValue("\(UserInfoModel.getUserId())", forHTTPHeaderField: "managerid")
         
         
         
@@ -698,32 +521,6 @@ class SuperHttpRequest: NSObject {
         
     }
     
-    
- 
-//    func base64Encode(str: String) -> String {
-//
-//        
-//        let dataString = NSString(string: str).data(using: 0, allowLossyConversion: true);
-//        let sbd = Data.Base64EncodingOptions.endLineWithLineFeed.union(.lineLength64Characters).union(.endLineWithCarriageReturn)
-//        let datas = dataString?.base64EncodedString(options: sbd);//NSData(data: dataString!).base64EncodedString(options: .lineLength64Characters);
-//        
-//        
-//        return datas!
-//
-//    }
-    
-    func encode(str: String) -> String {
-        let encode = str.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed);
-        return encode!;
-    }
-    
-//    func encodeString(str: String) -> String {
-//        
-//        
-//       let urls = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, str as CFString, nil, "!*'();:@&=+$,/?%#[]" as CFString, CFStringBuiltInEncodings.UTF8.rawValue);
-//        
-//        return urls as! String;
-//    }
 
     
     // 只从网络上获取
@@ -742,7 +539,12 @@ class SuperHttpRequest: NSObject {
             return;
         }
         let request = RequestOperation.createOperation(request: requestURL);
-
+        
+        let list = HttpParamterModel.getBodyParamter(list: paramterList, isBody: false);
+        var parameter = [String:String]();
+        for item in list {
+            parameter[item.key] = item.value;
+        }
         request.parameter = parameter;
         
         request.finiTask = {
@@ -884,6 +686,7 @@ class SuperHttpRequest: NSObject {
                 let nDict = dict else{
                 return nil;
             }
+//            print("dict = \(nDict)")
             result = BaseModel(dictM: nDict);
         }
         
@@ -926,6 +729,7 @@ class RequestOperation: Operation ,URLSessionDataDelegate{
     
     var methodType: HttpMethodType = .GET;
     var parameter = [String:String]();
+    
     
     var pathName = "";
     

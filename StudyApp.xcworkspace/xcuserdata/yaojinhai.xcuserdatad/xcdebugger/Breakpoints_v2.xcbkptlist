@@ -202,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StudyApp/APPConfig/AppDelegate.swift"
-            timestampString = "545041503.217062"
+            timestampString = "545046308.9887511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
@@ -217,13 +217,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "StudyApp/ViewControllers/home/HomeContentViewController.swift"
-            timestampString = "545041503.2171659"
+            filePath = "StudyApp/ViewControllers/action/BeginAnwerViewController.swift"
+            timestampString = "545222052.070769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "selectedItem(subView:model:type:)"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

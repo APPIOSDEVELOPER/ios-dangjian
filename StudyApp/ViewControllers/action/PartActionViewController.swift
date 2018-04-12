@@ -86,16 +86,25 @@ class PartActionViewController: SuperBaseViewController {
         guard let cell = tableView.cellForRow(at: indexPath) as? PartActionTableCell else {
             return;
         }
+        
+        if !UserInfoModel.isLogin() {
+            let ctrl = SettingViewController();
+            ctrl.operationType = .login;
+            navigateCtrl.pushViewController(ctrl, animated: true);
+            return;
+        }
+        
         let ctrl = BeginAnwerViewController();
         ctrl.id = cell.model.id;
+        ctrl.title = cell.model.square_name;
         navigateCtrl.pushViewController(ctrl, animated: true);
         
         
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let ctrl = BeginAnwerViewController();
-        navigateCtrl.pushViewController(ctrl, animated: true);
+//        let ctrl = BeginAnwerViewController();
+//        navigateCtrl.pushViewController(ctrl, animated: true);
     }
 }
 

@@ -40,7 +40,7 @@ class YyTabBarViewController: UITabBarController {
 
     func setUp() {
         
-        let normalFont = fontSize(size: 15);
+        let normalFont = fontSize(size: 14);
         
         
         // 首页

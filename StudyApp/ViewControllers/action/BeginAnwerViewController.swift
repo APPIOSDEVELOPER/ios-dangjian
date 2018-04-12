@@ -15,8 +15,8 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
     
     var id = 0;
     var selectedRow = -1;
-    var selectedRows: [Int]!
-    var anwserOpts: [String]!
+    lazy var selectedRows = [Int]();
+    lazy var anwserOpts = [String]()
     var questModel: QuestionListModel!
     var questionIndex = 0;
     
@@ -32,7 +32,8 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
         createTable(frame: navigateRect, delegate: self);
         baseTable.register(QuestionTableCell.classForCoder(), forCellReuseIdentifier: "cell");
         baseTable.register(ButtonTableCell.classForCoder(), forCellReuseIdentifier: "button");
-        baseTable.rowHeight = 50;
+        baseTable.rowHeight = UITableViewAutomaticDimension;
+        baseTable.estimatedRowHeight = 50;
         baseTable.separatorInset = UIEdge(size: 15);
         baseTable.separatorStyle = .singleLine;
         baseTable.tableHeaderView = tableHeader;
@@ -51,22 +52,44 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
             }
             self?.questModel = model.baseDataModel as? QuestionListModel;
             self?.baseTable.reloadData();
-            self?.tableHeader.baseView.countScond = (self?.questModel.countSecond)!;
+//            self?.tableHeader.baseView.countScond = (self?.questModel.countSecond)!;
             if let qModel = self?.questModel?.subject.first {
+                
+                let sized = qModel.subject_name.size(size: .init(width: self!.width() - 40, height: CGFloat.greatestFiniteMagnitude), font: 14);
+                
+                self?.tableHeader.frame = .init(x: 0, y: 0, width:self!.width(), height: sized.height + 120);
                 self?.tableHeader.titleLabel.text = qModel.subject_name;
+
             }
-            self?.tableHeader.baseView.beginTime();
+            self?.tableHeader.subTitleLabel.text = "1/\(self!.questModel.subject.count)"
+
+//            self?.tableHeader.baseView.beginTime();
         };
     }
     
     func commitResult() -> Void {
         
+        SVProgressHUD.show(withStatus: "正在上传")
         let request = UserRequest(commited: questionResult);
+        request.respType = .typeModel;
         request.loadJsonStringFinished { (result, success) in
-            guard let model = result as? NSDictionary else{
+            SVProgressHUD.dismiss();
+            guard let model = result as? BaseModel else{
+                self.showTip(msg: "上传失败", showCancel: false, finsihed: { (tag ) -> (Void) in
+                    navigateCtrl.popViewController(animated: true);
+                })
                 return;
             }
-            print("model = \(model)");
+            if model.isSuccess {
+                self.showTip(msg: "上传成功", showCancel: false, finsihed: { (tag ) -> (Void) in
+                    navigateCtrl.popViewController(animated: true);
+                })
+            }else{
+                self.showTip(msg: model.result_msg, showCancel: false, finsihed: { (tag ) -> (Void) in
+                    navigateCtrl.popViewController(animated: true);
+                })
+            }
+            
         };
         
     }
@@ -78,27 +101,26 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         
-        
-        
 
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
-        tableHeader.baseView.endTimer();
+//        tableHeader.baseView.endTimer();
     }
     
     func createTableHeader() -> Void {
-        tableHeader = BaseCustomView(frame: .init(x: 0, y: 0, width: width(), height: 160), type: .beginOptionView);
-        tableHeader.baseView.delegate = self;
+        tableHeader = BaseCustomView(frame: .init(x: 0, y: 0, width: width(), height: 200), type: .beginOptionView);
+//        tableHeader.baseView.delegate = self;
+        tableHeader.titleLabel.numberOfLines = 0;
         tableHeader.titleLabel.text = "()是关系党的事业兴衰的第一位问题";
     }
     
     // base custom view delegate
     
     func overTime(view: BaseCustomView) {
-        showTip(msg: "作对3道,错误7道,得分30", showCancel: false) { (tag) -> (Void) in
-            self.navigationController?.popViewController(animated: true);
+        showTip(msg: "时间到了,必须提交", showCancel: false) { (tag) -> (Void) in
+            
         };
     }
     
@@ -109,36 +131,80 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
     
     @objc override func buttonAction(btn: UIButton) {
         if let cell = btn.superview as? ButtonTableCell {
-            cell.tag = 0;
-//            commitResult();
-//            let dict = [["subject_id":1,"option_opt":["a"]]];
+            cell.rightImage.isHidden = false;
+
 
             let qModel = questModel.subject[questionIndex];
-            var dict = [String:Any]();
-            dict["subject_id"] = qModel.id;
-            dict["option_opt"] = anwserOpts;
-            questionResult.append(dict);
+           
+            if qModel.isSingle && qModel.optionEntity.count > selectedRow && selectedRow > -1 {
+
+                let selectedAwser = qModel.optionEntity[selectedRow];
+                cell.rightImage.isHighlighted = selectedAwser.isRight
+                
+            }else {
+                var isRight = true;
+                for item in qModel.optionEntity.enumerated() {
+                    if item.element.isRight && !selectedRows.contains(item.offset) {
+                        isRight = false;
+                        break;
+                    }else if !item.element.isRight && selectedRows.contains(item.offset) {
+                        isRight = false;
+                        break;
+                    }
+                }
+                cell.rightImage.isHighlighted = isRight;
+
+                
+            }
+            self.view.isUserInteractionEnabled = false;
+            perform(#selector(reloadDataByDelay), with: nil, afterDelay: 2);
+            
+
+        }
+    }
+    
+    @objc func reloadDataByDelay() -> Void {
+        
+        defer {
+            self.view.isUserInteractionEnabled = true;
+        }
+        
+        guard let subject = questModel?.subject else {
+            return;
+        }
+        
+        
+        let qModel = subject[questionIndex];
+        var dict = [String:Any]();
+        dict["subject_id"] = qModel.id;
+        dict["option_opt"] = anwserOpts;
+        questionResult.append(dict);
+        
+        anwserOpts.removeAll();
+        selectedRow = -1;
+        selectedRows.removeAll();
+        
+        
+        questionIndex += 1;
+        
+        if subject.count > questionIndex {
+            
+            let sized = qModel.subject_name.size(size: .init(width: width() - 40, height: CGFloat.greatestFiniteMagnitude), font: 14);
+            tableHeader.frame = .init(x: 0, y: 0, width: width(), height: sized.height + 120);
             
             tableHeader.titleLabel.text = qModel.subject_name;
             
-            print("dict = \(questionResult)");
+            self.baseTable.reloadData();
+            tableHeader.subTitleLabel.text = "\(questionIndex + 1)/\(subject.count)"
 
-            
-            anwserOpts?.removeAll();
-            selectedRow = -1;
-            selectedRows?.removeAll();
-            
-            if questModel?.subject == nil {
-                return;
-            }
-            questionIndex += 1;
-            if questModel.subject.count > questionIndex {
-                self.baseTable.reloadData();
-            }else {
-                commitResult();
-                questionIndex -= 1;
-            }
-            return;
+        }else {
+//            let sized = "".size(size: .init(width: width() - 40, height: CGFloat.greatestFiniteMagnitude), font: 14);
+//            tableHeader.frame = .init(x: 0, y: 0, width: width(), height: sized.height + 120);
+//            tableHeader.titleLabel.text = "";
+//
+//            self.baseTable.reloadData();
+            commitResult();
+            questionIndex -= 1;
         }
     }
     
@@ -148,14 +214,14 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
         return 1;
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        let model = questModel.subject[questionIndex].optionEntity[indexPath.row];
-        
-        let rowHeight: CGFloat = model.isOption ? 48 : 100;
-        return rowHeight;
-        
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//
+//        let model = questModel.subject[questionIndex].optionEntity[indexPath.row];
+//
+//        let rowHeight: CGFloat = model.isOption ? 48 : 100;
+//        return rowHeight;
+//
+//    }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -175,26 +241,40 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let model = questModel.subject[questionIndex].optionEntity[indexPath.row];
+        let supModel = questModel.subject[questionIndex];
+        let model = supModel.optionEntity[indexPath.row];
         
         if model.isOption {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! QuestionTableCell;
             cell.backgroundColor = UIColor.white;
-            cell.selectedItem = false;
             cell.configCellByModel(md: model);
-            
+            if supModel.isSingle {
+                cell.selectedItem = selectedRow == indexPath.row;
+            }else {
+                cell.selectedItem = selectedRows.contains(indexPath.row);
+                
+            }
             return cell;
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "button", for: indexPath) as! ButtonTableCell;
         cell.btn.addTarget(self, action: #selector(buttonAction(btn:)), for: .touchUpInside);
-//        cell.backgroundColor = 
         cell.btn.setTitle("下一题", for: .normal);
+        cell.addAnwserFlag();
+        cell.rightImage.isHidden = true;
+        cell.btn.isEnabled = false;
         return cell;
     }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        let model = questModel.subject[questionIndex];
+
+        
+        let btnCell = tableView.cellForRow(at:IndexPath.init(row: model.optionEntity.count - 1, section: 0)) as? ButtonTableCell;
+        
         
         
 //        MobClick.event("study_id", attributes: ["__ct__":"12"]);
@@ -203,17 +283,12 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
             return;
         }
         
-        let model = questModel.subject[questionIndex];
-        
-        if anwserOpts == nil {
-            anwserOpts = [String]();
-        }
+
         
         if model.isSingle {
             if indexPath.row != selectedRow {
                 let preCell = tableView.cellForRow(at: IndexPath.init(row: selectedRow, section: 0)) as? QuestionTableCell;
                 preCell?.selectedItem = false;
-                
                 
                 nextCell.selectedItem = true;
                 
@@ -221,31 +296,31 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
                 
                 anwserOpts.removeAll();
                 anwserOpts.append(nextCell.model.option_opt);
-            }
-        }else {
-            if selectedRows == nil {
-                selectedRows = [Int]();
-                anwserOpts = [String]();
+            }else{
+                selectedRow = -1;
+                nextCell.selectedItem = false;
+                anwserOpts.removeAll();
+
             }
             
+            
+        }else {
             if let idx = selectedRows.index(of: indexPath.row) {
                 anwserOpts.remove(at: idx);
                 
                 let preCell = tableView.cellForRow(at: IndexPath.init(row: indexPath.row, section: 0)) as? QuestionTableCell;
                 preCell?.selectedItem = false;
-                
                 selectedRows.remove(at: idx);
             }else {
                 selectedRows.append(indexPath.row);
-                
                 nextCell.selectedItem = true;
                 anwserOpts.append(nextCell.model.option_opt);
 
             }
             
-            
         }
-        
+        btnCell?.btn.isEnabled = anwserOpts.count > 0;
+
         
     }
     
@@ -255,6 +330,8 @@ class BeginAnwerViewController: SuperBaseViewController ,BaseCustomViewDelegate{
 
 
 class QuestionTableCell: BaseTableViewCell {
+    
+    
     
     var isSingle = true{
         didSet {
@@ -272,7 +349,10 @@ class QuestionTableCell: BaseTableViewCell {
     
     func configCellByModel(md: OptionEntityModel) -> Void {
         model = md;
-        titleLabel.text = md.getQuestionLabel();
+        titleLabel.attributedText = md.questionAttribute;
+        selectedItem = false;
+        rightImage.isHidden = true;
+
     }
     
     
@@ -287,13 +367,31 @@ class QuestionTableCell: BaseTableViewCell {
             maker.size.equalTo(CGSize.init(width: 6, height: 6));
         }
         
+        
+        rightImage = createImageView();
+        rightImage.contentMode = .scaleAspectFit;
+        rightImage.snp.makeConstraints { (maker) in
+            maker.right.equalTo(-10);
+            maker.height.equalTo(self.snp.height);
+            maker.width.equalTo(30);
+            maker.top.equalTo(0);
+        }
+        rightImage.image = #imageLiteral(resourceName: "selected_error.png");
+        rightImage.highlightedImage = #imageLiteral(resourceName: "selected_right.png");
+        rightImage.isHidden = true;
+        
         titleLabel = createLabel();
+        titleLabel.numberOfLines = 0;
         titleLabel.snp.makeConstraints { (maker) in
             maker.left.equalTo(self.leftImage.snp.right).offset(10);
-            maker.height.equalTo(self.snp.height);
-            maker.top.equalTo(0);
+            maker.right.equalTo(self.rightImage.snp.left).offset(-10);
+//            maker.height.equalTo(self.snp.height);
+            maker.top.equalTo(10);
+            maker.bottom.equalTo(-10)
 
         }
+        
+        
     }
     
     
@@ -311,16 +409,35 @@ class ButtonTableCell: BaseTableViewCell{
         btn.layer.cornerRadius = 4;
         btn.layer.masksToBounds = true;
         btn.setTitleColor(UIColor.white, for: .normal);
-        btn.backgroundColor = rgbColor(r: 58, g: 122, b: 210);
+        btn.setBackgroundImage(UIImage.createImage(color: rgbColor(r: 58, g: 122, b: 210)), for: .normal);
+        btn.setBackgroundImage(UIImage.createImage(color: UIColor.gray), for: .disabled);
+        btn.isEnabled = false;
         btn.snp.makeConstraints { (maker) in
             maker.left.equalTo(40);
             maker.centerY.equalTo(self.snp.centerY);
             maker.height.equalTo(40);
             maker.right.equalTo(-40);
+            maker.top.equalTo(40);
         }
         
     }
     
+    func addAnwserFlag() -> Void {
+        
+        if rightImage != nil {
+            return;
+        }
+        
+        rightImage = createImageView();
+        rightImage.snp.makeConstraints { (maker) in
+            maker.centerX.equalTo(self.snp.centerX);
+            maker.top.equalTo(10);
+            maker.size.equalTo(CGSize.init(width: 24, height: 24));
+        }
+        rightImage.image = #imageLiteral(resourceName: "selected_error.png");
+        rightImage.highlightedImage = #imageLiteral(resourceName: "selected_right.png");
+        rightImage.isHidden = true;
+    }
     
 }
 

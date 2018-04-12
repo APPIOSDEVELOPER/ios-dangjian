@@ -50,6 +50,7 @@ class SettingViewController: SuperBaseViewController ,UITextFieldDelegate {
         loginQQWX.titleButton.tag = ViewTagSense.qqTag.rawValue;
         loginQQWX.subButton.tag = ViewTagSense.wxTag.rawValue;
         
+        loginQQWX.alpha = 0;
     }
 
     

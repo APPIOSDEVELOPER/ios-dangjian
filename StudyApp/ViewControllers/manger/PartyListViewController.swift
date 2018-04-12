@@ -8,25 +8,16 @@ import UIKit
 
 class PartyListViewController: SuperBaseViewController ,UISearchBarDelegate{
     
-    var dataSource = [String]();
+    private var dataSource = [String]();
     
-    var searchBarView: UISearchBar!
+    private var searchBarView: UISearchBar!
     
-    var currentIndex = 1;
+    private var currentIndex = 1;
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataSource.append("习近平");
-        dataSource.append("李克强");
-        dataSource.append("栗战书");
-        dataSource.append("汪洋");
-        dataSource.append("王沪宁");
-        dataSource.append("孙春兰");
-
-        
-        
         
         searchBarView = UISearchBar.init(frame: .init(x: 40, y: 74, width: sWidth - 80, height: 35));
         addView(tempView: searchBarView);
@@ -69,7 +60,7 @@ class PartyListViewController: SuperBaseViewController ,UISearchBarDelegate{
     // MARK: - table view delgate
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 10;
+        return 0;
     }
     
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -77,19 +68,7 @@ class PartyListViewController: SuperBaseViewController ,UISearchBarDelegate{
     }
     
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        
-        var searchItem = [UITableViewIndexSearch];
-        searchItem.append("A");
-        searchItem.append("B");
-        searchItem.append("C");
-        searchItem.append("D");
-        searchItem.append("E");
-        searchItem.append("F");
-        searchItem.append("G");
-
-        
-        return searchItem;
-        
+        return UILocalizedIndexedCollation.current().sectionTitles;
     }
     
     func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {

@@ -15,7 +15,6 @@ class PersonDetialViewController: SuperBaseViewController {
     var id = 0;
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         
         let path = Bundle.main.path(forResource: "PersonList", ofType: "plist");
         
@@ -28,18 +27,29 @@ class PersonDetialViewController: SuperBaseViewController {
         
         tableHeader = BaseCustomView(frame: .init(x: 0, y: 0, width: sWidth, height: 140), type: .personDetial);
         baseTable.tableHeaderView = tableHeader;
-        tableHeader.titleImageView.image = UIImage(named:"head_portrait_rect");
+        tableHeader.titleImageView.layer.cornerRadius = 140 / 4;
+        
+        tableHeader.titleImageView.image = UIImage(named:"head_portrait");
         tableHeader.backgroundColor = rgbColor(r: 126, g: 205, b: 244);
+        
+        super.viewDidLoad()
+
 
     }
     
     override func loadDataFromNet(net: Bool) {
+        
         let request = UserRequest(value: "\(id)", jointType: .managerDetialId);
+//        request.cls = UserInfoModel.classForCoder();
         request.loadJsonStringFinished { (result, success) in
+            
             guard let model = result as? NSDictionary else{
                 return;
             }
-            printObject("model = \(model)");
+            print("modelsd = \(model)");
+//            guard let url = userModel.getPhotoURL() else{
+//                return;
+//            }; self.tableHeader.titleImageView.sd_setImage(with: url)
         };
         
     }
@@ -58,7 +68,7 @@ class PersonDetialViewController: SuperBaseViewController {
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PersonTableCell;
-        cell.titleLabel.text = dataSource[indexPath.row];
+        cell.titleLabel.text = "";//dataSource[indexPath.row];
         cell.leftTitle.text = dataSource[indexPath.row];
         return cell;
     }

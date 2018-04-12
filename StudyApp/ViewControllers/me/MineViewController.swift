@@ -114,6 +114,7 @@ class MineViewController: SuperBaseViewController {
         request.respType = .typeModel;
         request.loadJsonStringFinished { (result, success) in
             
+            
             guard let model = result as? BaseModel else{
                 return;
             }
@@ -162,6 +163,7 @@ class MineViewController: SuperBaseViewController {
         if type == 0 {
             let ctrl = PersonDetialViewController();
             ctrl.title = name;
+            ctrl.id = UserInfoModel.getUserId();
             navigateCtrl.pushViewController(ctrl, animated: true);
         }else if type == 2{
             let ctrl = SettingViewController();

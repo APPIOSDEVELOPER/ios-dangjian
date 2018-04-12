@@ -120,11 +120,10 @@ class CustomWebView: WKWebView,WKNavigationDelegate {
                 break;
             }
         }
-        contentBody = contentBody.replacingOccurrences(of: ">", with: "");
-        contentBody = contentBody.replacingOccurrences(of: " ", with: "");
-        contentBody = contentBody.replacingOccurrences(of: "\n", with: "");
-        print("content = \(contentBody)");
+        contentBody = contentBody.replacingOccurrences(of: ">|\\s", with: "", options: String.CompareOptions.regularExpression, range: contentBody.startIndex..<contentBody.endIndex);
         
+
+        print("contentaed = \(contentBody)")
     }
     
     // MARK: navigation delegate implement

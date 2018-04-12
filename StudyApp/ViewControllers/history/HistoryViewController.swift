@@ -29,15 +29,15 @@ class HistoryViewController: SuperBaseViewController {
         baseTable.rowHeight = UITableViewAutomaticDimension;
         baseTable.estimatedRowHeight = 80;
         
-        let hImageView = UIImageView(frame: .init(x: 0, y: 0, width: width(), height: 120));
-        hImageView.image = #imageLiteral(resourceName: "title_importention.png");
-        hImageView.contentMode = .scaleAspectFill;
-        hImageView.clipsToBounds = true;
-        
-        let headerView = UIView(frame: .init(x: 0, y: 0, width: width(), height: hImageView.height));
-        headerView.addSubview(hImageView);
-        
-        baseTable.tableHeaderView = headerView;
+//        let hImageView = UIImageView(frame: .init(x: 0, y: 0, width: width(), height: 120));
+//        hImageView.image = #imageLiteral(resourceName: "title_importention.png");
+//        hImageView.contentMode = .scaleAspectFill;
+//        hImageView.clipsToBounds = true;
+//
+//        let headerView = UIView(frame: .init(x: 0, y: 0, width: width(), height: hImageView.height));
+//        headerView.addSubview(hImageView);
+//
+//        baseTable.tableHeaderView = headerView;
         
 //        baseTable.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: {
 //            self.currentIndex += 1;
@@ -49,7 +49,7 @@ class HistoryViewController: SuperBaseViewController {
         });
         
         
-        lineBar = YTShapePathView(frame: .init(x: (width() - 8)/2, y: 180, width: 8, height: height()), type: .lineBarHistory);
+        lineBar = YTShapePathView(frame: .init(x: (width() - 8)/2, y: 64, width: 8, height: height()), type: .lineBarHistory);
         addView(tempView: lineBar);
         lineBar.backgroundColor = UIColor.clear;
         lineBar.fillColor = rgbColor(r: 226, g: 113, b: 111);
@@ -127,9 +127,9 @@ class HistoryViewController: SuperBaseViewController {
 
         let py = scrollView.contentOffset.y;
         if py < 120  {
-            lineBar.frame.origin.y = 120 + 60 - py;
+            lineBar.frame.origin.y = 64 - py;
         }else {
-            lineBar.frame.origin.y = 60;
+            lineBar.frame.origin.y = 64;
         }
     }
 }
@@ -191,6 +191,7 @@ class HistoryTableViewCell: BaseTableViewCell {
             maker.centerX.equalTo(self.snp.centerX);
             maker.width.equalTo(flagWidth);
             maker.height.equalTo(14);
+            
         }
         
         leftText = createLabel();
@@ -200,6 +201,7 @@ class HistoryTableViewCell: BaseTableViewCell {
             maker.right.equalTo(self.leftFlag.snp.left);
             maker.top.equalTo(self.leftFlag.snp.bottom);
             maker.bottom.lessThanOrEqualTo(self.snp.bottom).offset(-20);
+            maker.height.lessThanOrEqualTo(100);
 
         }
         
@@ -212,6 +214,8 @@ class HistoryTableViewCell: BaseTableViewCell {
             maker.right.lessThanOrEqualTo(self.snp.right).offset(-14);
             maker.top.equalTo(self.leftText.snp.top);
             maker.bottom.lessThanOrEqualTo(self.snp.bottom).offset(-20);
+            maker.height.lessThanOrEqualTo(100);
+
         }
         
         

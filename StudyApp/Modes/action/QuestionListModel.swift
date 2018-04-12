@@ -44,6 +44,7 @@ class SubjectModel: BaseModel {
     @objc var subject_name = ""; //"第一题的题目信息",
     
     var isSingle: Bool {
+//        return true;
         return subject_type == 1;
     }
     
@@ -74,9 +75,30 @@ class SubjectModel: BaseModel {
 class OptionEntityModel: BaseModel {
     @objc var option_name = "";
     @objc var option_opt = "";
+    @objc var isOk = 0;
+    
+    var isRight: Bool {
+        return isOk == 1;
+    }
     
     var isOption: Bool {
         return option_opt != "-1";
+    }
+    
+    private var questAt: NSAttributedString!
+    var questionAttribute: NSAttributedString {
+        
+        if questAt != nil {
+            return questAt;
+        }
+        
+        let attriubte = NSMutableAttributedString(string: option_opt + "\t" + option_name);
+        let paragram = NSMutableParagraphStyle();
+        paragram.headIndent = 24;
+        attriubte.addAttributes([NSAttributedStringKey.paragraphStyle:paragram], range: .init(location: 0, length: attriubte.length));
+        
+        questAt = attriubte;
+        return attriubte;
     }
     
     

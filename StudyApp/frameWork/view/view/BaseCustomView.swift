@@ -119,23 +119,26 @@ class BaseCustomView: UIView {
                 maker.left.right.top.equalTo(0);
                 maker.height.equalTo(50);
             })
+            baseView.isHidden = true;
             
             
             let questionFlagLabel = createLabel(frame: .zero);
             questionFlagLabel.textColor = rgbColor(r: 206, g: 66, b: 69);
             questionFlagLabel.font = fontSize(size: 14);
-            questionFlagLabel.text = "单选";
+            questionFlagLabel.text = "选择题";
             questionFlagLabel.snp.makeConstraints({ (maker) in
                 maker.left.equalTo(10);
                 maker.top.equalTo(backView.snp.bottom).offset(15);
             })
             
-            let questionLabel = createLabel(frame: .zero);
-            questionLabel.font = fontSize(size: 14);
-            questionLabel.textColor = UIColor.white;
-            questionLabel.backgroundColor = rgbColor(r: 206, g: 66, b: 69);
-            questionLabel.text = "1/10"
-            questionLabel.snp.makeConstraints({ (maker) in
+            
+            
+            subTitleLabel = createLabel(frame: .zero);
+            subTitleLabel.font = fontSize(size: 14);
+            subTitleLabel.textColor = UIColor.white;
+            subTitleLabel.backgroundColor = rgbColor(r: 206, g: 66, b: 69);
+            subTitleLabel.text = "1/10"
+            subTitleLabel.snp.makeConstraints({ (maker) in
                 maker.left.equalTo(questionFlagLabel.snp.right).offset(5);
                 maker.centerY.equalTo(questionFlagLabel.snp.centerY);
                 
@@ -147,8 +150,9 @@ class BaseCustomView: UIView {
             
             titleLabel.snp.makeConstraints({ (maker) in
                 maker.left.equalTo(20);
-                maker.bottom.equalTo(-20);
+                maker.bottom.greaterThanOrEqualTo(-10);
                 maker.right.equalTo(-20);
+                maker.top.greaterThanOrEqualTo(self.subTitleLabel.snp.bottom).offset(10)
             })
             
         case .loginSegmentView:

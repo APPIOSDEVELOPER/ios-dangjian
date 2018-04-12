@@ -37,12 +37,14 @@ class SearchViewController: SuperBaseViewController,UISearchBarDelegate {
         searchView = UISearchBar(frame: .init(x: 0, y: 8, width: width() - 100, height: 28));
         searchView.barTintColor = UIColor.white;
         searchView.barStyle = .default;
+        searchView.tintColor = UIColor.blue;
         searchView.searchBarStyle = .prominent;
         searchView.setBackgroundImage(UIImage(), for: .any, barMetrics: .default);
         searchView.delegate = self;
         searchView.setImage(UIImage(), for: .search, state: .normal);
         searchView.layer.cornerRadius = 6;
         searchView.layer.masksToBounds = true;
+        
 
         let rightImage = UIImageView(frame: .init(x: searchView.maxX - 50, y: 2, width: 40, height: searchView.height - 4));
         rightImage.contentMode = .scaleAspectFit;

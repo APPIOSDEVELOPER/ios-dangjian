@@ -111,11 +111,11 @@ class NewCommentViewController: SuperBaseViewController,UITextFieldDelegate {
         
         reqeust.loadJsonStringFinished { (result, success) in
             self.baseWebView.scrollView.mj_header?.endRefreshing();
-            guard let model = result as? BaseModel else{
+            guard let model = result as? BaseModel,
+            let subModel = model.baseDataModel as? NewsDetialModel else{
                 return;
             }
-            let subModel = model.baseDataModel as? NewsDetialModel;
-            self.baseWebView.loadHTMLString(subModel!.post_content, baseURL: nil);
+            self.baseWebView.loadHTMLString(subModel.post_content, baseURL: nil);
         };
         
         loadCommentList();

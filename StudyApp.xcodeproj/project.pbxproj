@@ -16,7 +16,6 @@
 		F706318A1F42989200C23D77 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F70631891F42989200C23D77 /* libresolv.tbd */; };
 		F70631951F42E0FB00C23D77 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F70631941F42E0FB00C23D77 /* WebKit.framework */; };
 		F71004141F5801D600564A64 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = F71004131F5801D600564A64 /* Podfile */; };
-		F718821C206C9D7C00A80393 /* icons_57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F718821B206C9D7C00A80393 /* icons_57@2x.png */; };
 		F72A6A9E206DF46D00BF227B /* CommentDeitalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72A6A9D206DF46D00BF227B /* CommentDeitalModel.swift */; };
 		F72A6AA0206E12C000BF227B /* NewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72A6A9F206E12C000BF227B /* NewCommentViewController.swift */; };
 		F73835EA206B2AC0006D0E97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F738345D206B2ABF006D0E97 /* Assets.xcassets */; };
@@ -192,7 +191,6 @@
 		F738369F206B2AC0006D0E97 /* tabbar_seleted_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F738358D206B2ABF006D0E97 /* tabbar_seleted_3@2x.png */; };
 		F73836A0206B2AC0006D0E97 /* tabbar_seleted_4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F738358E206B2ABF006D0E97 /* tabbar_seleted_4@2x.png */; };
 		F73836A1206B2AC0006D0E97 /* dang_fei_flag@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7383591206B2ABF006D0E97 /* dang_fei_flag@2x.png */; };
-		F73836A2206B2AC0006D0E97 /* head_portrait_rect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7383593206B2ABF006D0E97 /* head_portrait_rect@2x.png */; };
 		F73836A3206B2AC0006D0E97 /* app_exit_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7383595206B2ABF006D0E97 /* app_exit_icon@2x.png */; };
 		F73836A4206B2AC0006D0E97 /* banner@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7383596206B2ABF006D0E97 /* banner@2x.png */; };
 		F73836A5206B2AC0006D0E97 /* head_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7383597206B2ABF006D0E97 /* head_bg@2x.png */; };
@@ -270,6 +268,8 @@
 		F77336D4207B13BA00DB8167 /* MessageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77336D3207B13BA00DB8167 /* MessageItemModel.swift */; };
 		F77AF5841EA4B64D002A6530 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F77AF5831EA4B64D002A6530 /* libsqlite3.tbd */; };
 		F77AF5861EA4B655002A6530 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77AF5851EA4B655002A6530 /* CoreGraphics.framework */; };
+		F77C2239207F406A00B3AE38 /* CommentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77C2238207F406A00B3AE38 /* CommentListViewController.swift */; };
+		F77C223B207F490900B3AE38 /* HttpParamterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77C223A207F490900B3AE38 /* HttpParamterModel.swift */; };
 		F7962D5420037C9D00510B1B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7962D5320037C9D00510B1B /* MapKit.framework */; };
 		F79F87231F46A0A500C2D4CF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F79F87221F46A0A500C2D4CF /* CoreAudio.framework */; };
 		F7B8A5FE1F69027600231849 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7B8A5FD1F69027600231849 /* AVFoundation.framework */; };
@@ -287,7 +287,10 @@
 		F7BA2E2D1EB094F00036B607 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA2E2C1EB094F00036B607 /* ImageIO.framework */; };
 		F7BA2E4E1EB0A0040036B607 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA2E4D1EB0A0040036B607 /* SystemConfiguration.framework */; };
 		F7BA2E501EB0A0140036B607 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BA2E4F1EB0A0140036B607 /* CoreTelephony.framework */; };
+		F7F3CE66207DBD920004251D /* selected_error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7F3CE64207DBD920004251D /* selected_error@2x.png */; };
+		F7F3CE67207DBD920004251D /* selected_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7F3CE65207DBD920004251D /* selected_right@2x.png */; };
 		F7F3F2BA2029AC8F00836045 /* StudyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7F3F2B92029AC8F00836045 /* StudyAppTests.swift */; };
+		F7F57097207DCFEC004D0599 /* icons_57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7F57096207DCFEC004D0599 /* icons_57@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,7 +329,6 @@
 		F70631941F42E0FB00C23D77 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F709B4A31ED7DAB8009D0065 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		F71004131F5801D600564A64 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		F718821B206C9D7C00A80393 /* icons_57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icons_57@2x.png"; path = "StudyApp/Assets.xcassets/AppIcon.appiconset/icons_57@2x.png"; sourceTree = SOURCE_ROOT; };
 		F72A6A9D206DF46D00BF227B /* CommentDeitalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDeitalModel.swift; sourceTree = "<group>"; };
 		F72A6A9F206E12C000BF227B /* NewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCommentViewController.swift; sourceTree = "<group>"; };
 		F72F5BDA1FD92A2100BD2446 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
@@ -566,7 +568,6 @@
 		F738358D206B2ABF006D0E97 /* tabbar_seleted_3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_seleted_3@2x.png"; sourceTree = "<group>"; };
 		F738358E206B2ABF006D0E97 /* tabbar_seleted_4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_seleted_4@2x.png"; sourceTree = "<group>"; };
 		F7383591206B2ABF006D0E97 /* dang_fei_flag@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dang_fei_flag@2x.png"; sourceTree = "<group>"; };
-		F7383593206B2ABF006D0E97 /* head_portrait_rect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_portrait_rect@2x.png"; sourceTree = "<group>"; };
 		F7383595206B2ABF006D0E97 /* app_exit_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_exit_icon@2x.png"; sourceTree = "<group>"; };
 		F7383596206B2ABF006D0E97 /* banner@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banner@2x.png"; sourceTree = "<group>"; };
 		F7383597206B2ABF006D0E97 /* head_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "head_bg@2x.png"; sourceTree = "<group>"; };
@@ -646,6 +647,8 @@
 		F77336D3207B13BA00DB8167 /* MessageItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItemModel.swift; sourceTree = "<group>"; };
 		F77AF5831EA4B64D002A6530 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		F77AF5851EA4B655002A6530 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F77C2238207F406A00B3AE38 /* CommentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentListViewController.swift; sourceTree = "<group>"; };
+		F77C223A207F490900B3AE38 /* HttpParamterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpParamterModel.swift; sourceTree = "<group>"; };
 		F7962D5320037C9D00510B1B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F79F87221F46A0A500C2D4CF /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		F7AC31361FFC783300B35789 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -664,9 +667,12 @@
 		F7BA2E2C1EB094F00036B607 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		F7BA2E4D1EB0A0040036B607 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F7BA2E4F1EB0A0140036B607 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F7F3CE64207DBD920004251D /* selected_error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_error@2x.png"; sourceTree = "<group>"; };
+		F7F3CE65207DBD920004251D /* selected_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_right@2x.png"; sourceTree = "<group>"; };
 		F7F3F2B72029AC8F00836045 /* StudyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7F3F2B92029AC8F00836045 /* StudyAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyAppTests.swift; sourceTree = "<group>"; };
 		F7F3F2BB2029AC8F00836045 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7F57096207DCFEC004D0599 /* icons_57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons_57@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -742,6 +748,7 @@
 				F7383459206B2ABF006D0E97 /* APPConfig */,
 				F738345D206B2ABF006D0E97 /* Assets.xcassets */,
 				F738345E206B2ABF006D0E97 /* boot_page_icon@2x.png */,
+				F7F57096207DCFEC004D0599 /* icons_57@2x.png */,
 				F738345F206B2ABF006D0E97 /* boot_page_icon@3x.png */,
 				F7383460206B2ABF006D0E97 /* BuildDefine */,
 				F7383463206B2ABF006D0E97 /* frameWork */,
@@ -858,6 +865,7 @@
 			children = (
 				F738347B206B2ABF006D0E97 /* ReadFileManager.swift */,
 				F738347C206B2ABF006D0E97 /* RequestOperation.swift */,
+				F77C223A207F490900B3AE38 /* HttpParamterModel.swift */,
 				F75EB1412074855F009DD8FF /* RequestConfig.swift */,
 			);
 			path = http;
@@ -1401,6 +1409,8 @@
 		F7383579206B2ABF006D0E97 /* study */ = {
 			isa = PBXGroup;
 			children = (
+				F7F3CE64207DBD920004251D /* selected_error@2x.png */,
+				F7F3CE65207DBD920004251D /* selected_right@2x.png */,
 				F738357A206B2ABF006D0E97 /* pitch_on@2x.png */,
 				F738357B206B2ABF006D0E97 /* play@2x.png */,
 				F738357C206B2ABF006D0E97 /* Radio@2x.png */,
@@ -1444,7 +1454,6 @@
 			children = (
 				F7383590206B2ABF006D0E97 /* dangfei */,
 				F7383592206B2ABF006D0E97 /* func */,
-				F7383593206B2ABF006D0E97 /* head_portrait_rect@2x.png */,
 				F7383594206B2ABF006D0E97 /* me */,
 				F738359B206B2ABF006D0E97 /* part_list_0@2x.png */,
 				F738359C206B2ABF006D0E97 /* part_list_1@2x.png */,
@@ -1544,6 +1553,7 @@
 			children = (
 				F73835B7206B2ABF006D0E97 /* HistoryViewController.swift */,
 				F73835B8206B2ABF006D0E97 /* MyClsViewController.swift */,
+				F77C2238207F406A00B3AE38 /* CommentListViewController.swift */,
 			);
 			path = history;
 			sourceTree = "<group>";
@@ -1595,7 +1605,6 @@
 				F73835D0206B2ABF006D0E97 /* MsgListViewController.swift */,
 				F73835D1206B2ABF006D0E97 /* PersonDetialViewController.swift */,
 				F73835D2206B2ABF006D0E97 /* PersonList.plist */,
-				F718821B206C9D7C00A80393 /* icons_57@2x.png */,
 			);
 			path = me;
 			sourceTree = "<group>";
@@ -1868,13 +1877,13 @@
 				F73836B2206B2AC0006D0E97 /* return_btn_back@3x.png in Resources */,
 				F7383658206B2AC0006D0E97 /* count_party_0@2x.png in Resources */,
 				F738367E206B2AC0006D0E97 /* search@2x.png in Resources */,
-				F718821C206C9D7C00A80393 /* icons_57@2x.png in Resources */,
 				F738366F206B2AC0006D0E97 /* party_manager_background@2x.png in Resources */,
 				F7383672206B2AC0006D0E97 /* MeListItem的副本.plist in Resources */,
 				F7383692206B2AC0006D0E97 /* collect@2x.png in Resources */,
 				F73835ED206B2AC0006D0E97 /* AppIcon.plist in Resources */,
 				F738368E206B2AC0006D0E97 /* pitch_on@2x.png in Resources */,
 				F738362D206B2AC0006D0E97 /* ShareSDK.bundle in Resources */,
+				F7F3CE66207DBD920004251D /* selected_error@2x.png in Resources */,
 				F73836A5206B2AC0006D0E97 /* head_bg@2x.png in Resources */,
 				F7383665206B2AC0006D0E97 /* share_icon_0@2x.png in Resources */,
 				F738366B206B2AC0006D0E97 /* party_manager_2@2x.png in Resources */,
@@ -1951,8 +1960,10 @@
 				F738360B206B2AC0006D0E97 /* ChartsLine.html in Resources */,
 				F738367B206B2AC0006D0E97 /* my_cls_1@2x.png in Resources */,
 				F738369B206B2AC0006D0E97 /* tabbar_4@2x.png in Resources */,
+				F7F57097207DCFEC004D0599 /* icons_57@2x.png in Resources */,
 				F7383671206B2AC0006D0E97 /* MeListItem.plist in Resources */,
 				F738362A206B2AC0006D0E97 /* WeiboSDK.bundle in Resources */,
+				F7F3CE67207DBD920004251D /* selected_right@2x.png in Resources */,
 				F738368F206B2AC0006D0E97 /* play@2x.png in Resources */,
 				F7383693206B2AC0006D0E97 /* comment@2x.png in Resources */,
 				F7383664206B2AC0006D0E97 /* regist_unselect@3x.png in Resources */,
@@ -1974,7 +1985,6 @@
 				F73836AE206B2AC0006D0E97 /* part_list_5@2x.png in Resources */,
 				F73836B4206B2AC0006D0E97 /* stop_icon@2x.png in Resources */,
 				F738369D206B2AC0006D0E97 /* tabbar_seleted_1@2x.png in Resources */,
-				F73836A2206B2AC0006D0E97 /* head_portrait_rect@2x.png in Resources */,
 				F7383663206B2AC0006D0E97 /* regist_unselect@2x.png in Resources */,
 				F73836A3206B2AC0006D0E97 /* app_exit_icon@2x.png in Resources */,
 				F7383667206B2AC0006D0E97 /* share_icon_2@2x.png in Resources */,
@@ -2101,6 +2111,7 @@
 				F73836BF206B2AC0006D0E97 /* YyTabBarViewController.swift in Sources */,
 				F73836E2206B2AC0006D0E97 /* DoptStedeView.swift in Sources */,
 				F73835F5206B2AC0006D0E97 /* FlySpeechManager.swift in Sources */,
+				F77C2239207F406A00B3AE38 /* CommentListViewController.swift in Sources */,
 				F73836D1206B2AC0006D0E97 /* PartyPayManagerViewController.swift in Sources */,
 				F7383616206B2AC0006D0E97 /* SDWebImageCompat.m in Sources */,
 				F7383618206B2AC0006D0E97 /* SDWebImageDownloader.m in Sources */,
@@ -2128,6 +2139,7 @@
 				F73836D4206B2AC0006D0E97 /* MsgDeitalViewController.swift in Sources */,
 				F73835EF206B2AC0006D0E97 /* AudioConverMp3.m in Sources */,
 				F73836BD206B2AC0006D0E97 /* ShareViewController.swift in Sources */,
+				F77C223B207F490900B3AE38 /* HttpParamterModel.swift in Sources */,
 				F73836C7206B2AC0006D0E97 /* HTMLContentViewController.swift in Sources */,
 				F738363F206B2AC0006D0E97 /* CurrentModelContontroller.swift in Sources */,
 				F73835FB206B2AC0006D0E97 /* RequestOperation.swift in Sources */,
@@ -2379,7 +2391,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/StudyApp/AppBridge.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
@@ -2464,7 +2476,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/StudyApp/AppBridge.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
